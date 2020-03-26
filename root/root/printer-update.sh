@@ -4,6 +4,7 @@ while read -r directory events filename; do
 	if [ "$filename" = "printers.conf" ]; then
 		rm -rf /services/AirPrint-*.service
 		/root/airprint-generate.py -d /services
+                cp /services/* /etc/avahi/services/
 		cp /etc/cups/printers.conf /config/printers.conf
 	fi
 done

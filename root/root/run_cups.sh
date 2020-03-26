@@ -16,5 +16,8 @@ if [ ! -f /config/printers.conf ]; then
 fi
 cp /config/printers.conf /etc/cups/printers.conf
 
+sed -i 's/#enable-dbus=yes/enable-dbus=no/g' /etc/avahi/avahi-daemon.conf
+
 /root/printer-update.sh &
+exec /usr/sbin/avahi-daemon --daemonize
 exec /usr/sbin/cupsd -f
